@@ -8,6 +8,12 @@
 <body>
     cartno: {{cartno}}
     <br>
-    sess_id: {{session_id}}
+    <table>
+        {% for item in items %}
+        <tr>
+            <td>{{item}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
