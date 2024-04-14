@@ -57,6 +57,17 @@ async def check_cartid(cartno: Annotated[str, Form()]):
     response.set_cookie(key="session", value = sessions[cartno])
     return response
 
+#LOGIN TO ADMIN
+@app.get('/admin')
+async def admin_home(request: Request):
+    return templates.TemplateResponse('admin.html', {'request': request})
+
+@app.post('/alldata')
+async def all_data():
+    return {
+        'sessions': sessions,
+        'carts': { cartno:itemlist(cartno) for cartno in carts.keys()}
+    }
 
 #CART PAGE
 @app.get('/cart/{cartno}')
