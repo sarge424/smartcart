@@ -1,14 +1,14 @@
 <!-- Index.html file -->
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
+	
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
 		content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet"
-		href="barcode.css">
-	<title>QR Code Scanner / Reader
+		<link rel="stylesheet"
+		href="/static/barcode.css">
+	<title>charset
 	</title>
 </head>
 
@@ -19,13 +19,24 @@
 			<div id="my-qr-reader">
 			</div>
 		</div>
-        <div class="itemlist">
-        </div>
+		<div class="itemlist">
+		</div>
 	</div>
+
+
+	<input type="hidden" id="cartno" name="{{cartno}}">
+
+	<!-- Display Cart-->
+	<div class="container">
+		
+		<table id="itemtable">
+		</table>
+	</div>
+
 	<script
 		src="https://unpkg.com/html5-qrcode">
 	</script>
-	<script src="barcode.js"></script>
+	<script src="/static/barcode.js"></script>
 </body>
 
 </html>
