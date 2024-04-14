@@ -66,10 +66,23 @@ async def show_cart(request: Request, response: Response, cartno: str):
         response.delete_cookie('session')
         return RedirectResponse('/', status_code=status.HTTP_302_FOUND)
     
-    #TODO: DUMMY PAGE
+    #CART PAGE
     return templates.TemplateResponse('barcode.html', {
         'request': request,
         'cartno': cartno
+    })
+    
+@app.get('/checkout/{cartno}')
+def checkout_page(request: Request, response: Response, cartno: str):
+    #session mismatch - send to homepage
+    if 'session' not in request.cookies.keys() or cartno not in sessions.keys() or sessions[cartno] != request.cookies['session']:
+        response.delete_cookie('session')
+        return RedirectResponse('/', status_code=status.HTTP_302_FOUND)
+    
+    return templates.TemplateResponse('checkout.html',{
+        'request': request,
+        'items': itemlist(cartno),
+        'total': sum(list(map(lambda x: x['total'], itemlist(cartno))))
     })
 
 
