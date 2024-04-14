@@ -21,9 +21,18 @@ function delay(time) {
 
 
 function fillTable(dataList) {
-    let table = document.getElementById('itemtable');
+    const table = document.getElementById('itemtable');
+	const headerRow = document.createElement("tr");
 	table.innerHTML = '';
 	
+	['Name', 'Price', 'Quantity', 'Subtotal'].forEach((headerText) => {
+		const headerCell = document.createElement("th");
+		headerCell.textContent = headerText;
+		headerRow.append(headerCell);
+	});
+
+	table.append(headerRow)
+
 	dataList.forEach(function(item) {
         var row = table.insertRow();
 

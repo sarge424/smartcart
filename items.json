@@ -1,0 +1,62 @@
+[
+    {
+      "id": "gR23kL9",
+      "name": "Bananas",
+      "price": 1.99,
+      "shelf_number": "A1"
+    },
+    {
+      "id": "sF8pZq2",
+      "name": "Milk",
+      "price": 2.49,
+      "shelf_number": "B2"
+    },
+    {
+      "id": "tH5mWx1",
+      "name": "Bread",
+      "price": 1.89,
+      "shelf_number": "C3"
+    },
+    {
+      "id": "uR9zYv3",
+      "name": "Eggs",
+      "price": 2.29,
+      "shelf_number": "A4"
+    },
+    {
+      "id": "vA1bXs7",
+      "name": "Apples",
+      "price": 3.49,
+      "shelf_number": "B5"
+    },
+    {
+      "id": "wQ3cZu5",
+      "name": "Chicken",
+      "price": 5.99,
+      "shelf_number": "C6"
+    },
+    {
+      "id": "xJ2dYu4",
+      "name": "Cheese",
+      "price": 4.79,
+      "shelf_number": "A7"
+    },
+    {
+      "id": "yK4eTv8",
+      "name": "Pasta",
+      "price": 1.29,
+      "shelf_number": "B8"
+    },
+    {
+      "id": "zL6fTw6",
+      "name": "Tomatoes",
+      "price": 2.79,
+      "shelf_number": "C9"
+    },
+    {
+      "id": "aM7gSx0",
+      "name": "Potatoes",
+      "price": 2.09,
+      "shelf_number": "A10"
+    }
+]

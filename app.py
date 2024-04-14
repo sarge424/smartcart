@@ -7,6 +7,7 @@ from datetime import datetime
 import starlette.status as status
 from pydantic import BaseModel
 
+import json
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -16,6 +17,26 @@ templates = Jinja2Templates(directory='htmls')
 sessions = {}
 
 carts = {}
+
+items = []
+
+with open('items.json', 'r') as file:
+    items = json.load(file)
+
+def itemlist(cno):
+    l = []
+    for code, quantity in carts[cno].items():
+        for item in items:
+            if item['id'] == code:
+                l.append({
+                    'name': item['name'],
+                    'price': item['price'],
+                    'quantity': quantity,
+                    'total': item['price'] * quantity
+                })
+                
+    return l
+
 
 #LOGIN PAGE
 @app.get('/')
@@ -30,7 +51,7 @@ async def check_cartid(cartno: Annotated[str, Form()]):
         return RedirectResponse('/', status_code=status.HTTP_302_FOUND)
     
     #init empty cart and send session cookie
-    carts[cartno] = {'1234': 4, '12312412': 5}
+    carts[cartno] = {'vA1bXs7': 4, 'yK4eTv8': 5}
     sessions[cartno] = str(hash(cartno + '50792bn-3hn' + datetime.now().strftime('%H%M%S')))
     response = RedirectResponse(f'/cart/{cartno}', status_code=status.HTTP_302_FOUND)
     response.set_cookie(key="session", value = sessions[cartno])
@@ -68,7 +89,7 @@ async def add_items(request: Request, item: AddedItem):
     
 @app.post('/items/{cartno}')
 async def get_items(cartno: str):
-    return [{'code': k, 'amt': v} for k,v in carts[cartno].items()]
+    return itemlist(cartno)
     
 #LOGOUT
 @app.get('/logout')
