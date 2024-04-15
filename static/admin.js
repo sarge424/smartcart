@@ -31,6 +31,16 @@ async function datafetcher() {
         totalElement.classList.add('btn', 'btn-primary', 'btn-disabled')
         let total = 0
         
+        const hrow = document.createElement('tr');
+        ['Name', 'Price', 'Quantity', 'Subtotal'].forEach((headerText) => {
+            const headerCell = document.createElement("th");
+            headerCell.textContent = headerText;
+            headerCell.scope = 'col'
+            hrow.append(headerCell);
+        });
+
+        thead.append(hrow);
+
         //for each item in that cart
         data.carts[key].forEach((item) => {
             
