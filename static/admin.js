@@ -9,16 +9,26 @@ async function datafetcher() {
 
     data = await rawResponse.json();
 
+    console.log(data)
+
     let maindiv = document.getElementById('carts')
+    maindiv.classList.add('container-fluid')
     maindiv.innerHTML = ''
 
+    //for each cart in carts
     Object.keys(data.carts).forEach((key) => {
+        let div = document.createElement('div')
+        div.classList.add('container')
+
         let title = document.createElement('h4')
         title.innerHTML = key
         let table = document.createElement('table')
-        
+        table.classList.add(['table', 'table-light'])
+
         let totalElement = document.createElement('p')
         let total = 0
+        
+        //for each item in that cart
         data.carts[key].forEach((item) => {
             row = table.insertRow()
 
@@ -30,9 +40,10 @@ async function datafetcher() {
             })
         })
         //table.innerHTML = cartno
-        maindiv.append(title)
-        maindiv.append(table)
-        maindiv.append(totalElement.innerHTML = 'total: '+total)
+        div.append(title)
+        div.append(table)
+        div.append(totalElement.innerHTML = 'total: '+total)
+        maindiv.append(div)
     })
 }
 
