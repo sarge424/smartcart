@@ -21,30 +21,39 @@ async function datafetcher() {
         div.classList.add('container')
 
         let title = document.createElement('h4')
-        title.innerHTML = key
+        title.innerHTML = 'Cart No: '+key
         let table = document.createElement('table')
-        table.classList.add(['table', 'table-light'])
-
-        let totalElement = document.createElement('p')
+        table.classList.add('table', 'table-light','table-bordered')
+        let thead=document.createElement('thead')
+        let tbody=document.createElement('tbody')
+        thead.classList.add('table-primary')
+        let totalElement = document.createElement('button')
+        totalElement.classList.add('btn', 'btn-primary', 'btn-disabled')
         let total = 0
         
         //for each item in that cart
         data.carts[key].forEach((item) => {
-            row = table.insertRow()
+            
+            row = document.createElement('tr')
 
             Object.keys(item).forEach((field) => {
                 cell = row.insertCell()
                 cell.textContent = item[field]
                 if(field == 'total')
                     total += item[field]
+            
             })
+            tbody.append(row)
         })
         //table.innerHTML = cartno
         div.append(title)
+        table.append(thead)
+        table.append(tbody)
         div.append(table)
-        div.append(totalElement.innerHTML = 'total: '+total)
+        totalElement.innerHTML = 'total: '+total
+        div.append(totalElement)
         maindiv.append(div)
     })
 }
 
-setInterval(datafetcher, 1000);
+inter = setInterval(datafetcher, 1000);
