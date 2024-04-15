@@ -22,19 +22,26 @@ function delay(time) {
 
 function fillTable(dataList) {
     const table = document.getElementById('itemtable');
+    const head = document.createElement('thead');
+
+	head.classList.add('table-primary')
 	const headerRow = document.createElement("tr");
 	table.innerHTML = '';
 	
 	['Name', 'Price', 'Quantity', 'Subtotal'].forEach((headerText) => {
 		const headerCell = document.createElement("th");
 		headerCell.textContent = headerText;
+		headerCell.scope = 'col'
 		headerRow.append(headerCell);
 	});
 
-	table.append(headerRow)
+	console.log(headerRow)
+	head.append(headerRow)
+	table.append(head)
 
+	const tbody = document.createElement('tbody')
 	dataList.forEach(function(item) {
-        var row = table.insertRow();
+        var row = document.createElement('tr')
 
 		for (var key in item) {
             if (item.hasOwnProperty(key)) {
@@ -42,7 +49,11 @@ function fillTable(dataList) {
                 cell.textContent = item[key];
             }
         }
+
+		tbody.append(row)
     });
+
+	table.append(tbody)
 }
 
 
@@ -59,7 +70,9 @@ async function refreshItems() {
 		}
 	});
 	
+	console.log('asdf');
 	items = await rawResponse.json();
+	console.log('got items', items);
 	
 	fillTable(items)
 
@@ -103,4 +116,12 @@ domReady(function () {
 	htmlscanner.render(onScanSuccess);
 });
 
+function setCheckoutLink(){
+	const link = document.getElementById('checkoutbtn')
+	console.log(link)
+	link.href = '/checkout/' + document.getElementById('cartno').name
+	console.log('link set successfully')
+}
+
+setCheckoutLink();
 refreshItems();
