@@ -51,7 +51,7 @@ async def check_cartid(cartno: Annotated[str, Form()]):
         return RedirectResponse('/', status_code=status.HTTP_302_FOUND)
     
     #init empty cart and send session cookie
-    carts[cartno] = {'vA1bXs7': 4, 'yK4eTv8': 5}
+    carts[cartno] = {}
     sessions[cartno] = str(hash(cartno + '50792bn-3hn' + datetime.now().strftime('%H%M%S')))
     response = RedirectResponse(f'/cart/{cartno}', status_code=status.HTTP_302_FOUND)
     response.set_cookie(key="session", value = sessions[cartno])
